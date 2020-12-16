@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order extends AbstractModel {
     private int quantity;
     private Date date;

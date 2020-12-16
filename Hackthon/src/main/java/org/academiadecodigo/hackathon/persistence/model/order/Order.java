@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "orders")
 public class Order extends AbstractModel {
     private int quantity;
-    private Date date;
+
 
     @ManyToOne
     private User user;
@@ -45,14 +45,6 @@ public class Order extends AbstractModel {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public List<Product> getProducts() {

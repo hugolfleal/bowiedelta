@@ -17,6 +17,4 @@ public class ControllerTest {
 
         return new ResponseEntity<>(hello, HttpStatus.OK);
     }
-
-
 }

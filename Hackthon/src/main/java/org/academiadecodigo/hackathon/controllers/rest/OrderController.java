@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("user/id/order")
+@RequestMapping("/order")
 public class OrderController {
 
     private OrderService orderService;
@@ -83,7 +83,7 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
-    public ResponseEntity deleteCustomer(@PathVariable Integer id) {
+    public ResponseEntity deleteOrder(@PathVariable Integer id) {
         try {
             orderService.delete(id);
             return new ResponseEntity(HttpStatus.OK);

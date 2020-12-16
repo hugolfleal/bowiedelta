@@ -95,7 +95,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
-    public ResponseEntity deleteCustomer(@PathVariable Integer id) {
+    public ResponseEntity deleteUser(@PathVariable Integer id) {
         try {
             userService.delete(id);
             return new ResponseEntity(HttpStatus.OK);

@@ -1,1 +1,11 @@
+org/academiadecodigo/hackthon/persistence/model/product/Product.class
+org/academiadecodigo/hackthon/persistence/model/User.class
+org/academiadecodigo/hackthon/persistence/model/order/Order.class
+org/academiadecodigo/hackthon/persistence/model/product/GamingProduct.class
+org/academiadecodigo/hackthon/persistence/model/product/BusProduct.class
+org/academiadecodigo/hackthon/persistence/model/product/TripProduct.class
+org/academiadecodigo/hackthon/persistence/model/product/ProductType.class
+org/academiadecodigo/hackthon/persistence/model/Model.class
 org/academiadecodigo/hackthon/controllers/rest/ControllerTest.class
+org/academiadecodigo/hackthon/persistence/model/Address.class
+org/academiadecodigo/hackthon/persistence/model/AbstractModel.class

@@ -10,7 +10,7 @@
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://${prod.jdbc.host}/${prod.jdbc.database}?useSSL=false"/>
         <property name="user" value="${prod.jdbc.username}"/>
-        <property name="password" value="admin"/>
+        <property name="password" value="password"/>
         <!-- c3p0 database connection pool management properties -->
         <property name="minPoolSize" value="${pool.min}"/>
         <property name="maxPoolSize" value="${pool.max}"/>
@@ -23,7 +23,7 @@
     </bean>
     <bean id="emFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="org.academiadecodigo.hackthon.persistence.models"/>
+        <property name="packagesToScan" value="org.academiadecodigo.hackthon.persistence.model"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
@@ -32,7 +32,7 @@
                 <entry key="hibernate.show_sql" value="${prod.debug}" />
                 <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
                 <!-- Run as create once to initialize the schema -->
-                <!--<entry key="hibernate.hbm2ddl.auto" value="validate"/>-->
+                <entry key="hibernate.hbm2ddl.auto" value="create"/>
             </map>
         </property>
     </bean>

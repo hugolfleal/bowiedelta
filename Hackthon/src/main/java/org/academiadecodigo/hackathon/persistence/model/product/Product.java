@@ -7,9 +7,7 @@ import org.academiadecodigo.hackathon.persistence.model.order.Order;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * A generic account model entity to be used as a base for concrete types of accounts
- */
+
 @Entity
 @Table(name = "product")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

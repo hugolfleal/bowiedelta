@@ -15,6 +15,7 @@ public class User extends AbstractModel {
     private String lastName;
     private String email;
     private String phone;
+    private String token;
 
     @OneToOne (cascade = {CascadeType.ALL}, orphanRemoval = true, mappedBy = "user", fetch = FetchType.EAGER)
     private Address address;
@@ -69,6 +70,14 @@ public class User extends AbstractModel {
 
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public void addOrder(Order order) {

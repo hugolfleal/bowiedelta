@@ -14,6 +14,7 @@ public class OrderToOrderDto extends AbstractConverter <Order, OrderDto> {
         orderDto.setId(order.getId());
         orderDto.setDate(order.getCreationTime());
         orderDto.setQuantity(order.getQuantity());
+        orderDto.setProducts(order.getProducts());
 
         return orderDto;
     }

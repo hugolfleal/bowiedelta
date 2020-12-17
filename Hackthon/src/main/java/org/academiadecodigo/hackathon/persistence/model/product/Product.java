@@ -15,6 +15,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "product_type")
 public abstract class Product extends AbstractModel {
+
     private double price;
     private String name;
     private String description;

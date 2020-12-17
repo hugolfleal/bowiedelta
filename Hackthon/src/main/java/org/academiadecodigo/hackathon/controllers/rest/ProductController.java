@@ -40,8 +40,8 @@ public class ProductController {
         this.productToProductDto = productToProductDto;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/{uid}/{id}")
-    public ResponseEntity<ProductDto> getProduct(@PathVariable Integer id, @PathVariable Integer uid){
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    public ResponseEntity<ProductDto> getProduct(@PathVariable Integer id){
 
         Product product = productService.get(id);
         ProductDto productDto = productToProductDto.convert(product);
@@ -50,9 +50,8 @@ public class ProductController {
         return new ResponseEntity<>(productDto, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, path = "/{uid}/create")
-    public ResponseEntity<ProductDto> createProduct(@PathVariable Integer uid,
-                                                  @Valid @RequestBody ProductDto productDto,
+    @RequestMapping(method = RequestMethod.POST, path = "/create")
+    public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductDto productDto,
                                                   BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

@@ -7,6 +7,7 @@ import org.academiadecodigo.hackathon.persistence.model.order.OrderItem;
 import org.academiadecodigo.hackathon.services.OrderItemService;
 import org.academiadecodigo.hackathon.services.OrderService;
 import org.academiadecodigo.hackathon.services.ProductService;
+import org.academiadecodigo.hackathon.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,12 @@ public class OrderDtoToOrder extends AbstractConverter <OrderDto, Order> {
     private OrderItemService orderItemService;
     private OrderService orderService;
     private ProductService productService;
+    private UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @Autowired
     public void setProductService(ProductService productService) {
@@ -41,10 +48,8 @@ public class OrderDtoToOrder extends AbstractConverter <OrderDto, Order> {
         Order order = new Order();
         order.setId(orderDto.getId());
         order.setCreationTime(orderDto.getDate());
-
-
-        order.setOrderItems(orderItemDtoToOrderItem(orderDto.getItems()));
-
+        //order.setOrderItems(orderItemDtoToOrderItem(orderDto.getItems()));
+        order.setUser(userService.get(orderDto.getUserId()));
 
         return order;
     }
@@ -60,13 +65,13 @@ public class OrderDtoToOrder extends AbstractConverter <OrderDto, Order> {
         return dtoItems;
     }
 
-    private OrderItem convertItem(OrderItemDto oid) {
+    public OrderItem convertItem(OrderItemDto oid) {
 
         OrderItem orderItem = new OrderItem();
         orderItem.setQuantity(oid.getQuantity());
         orderItem.setProduct(productService.get(oid.getProductId()));
         orderItem.setId(oid.getId());
-        orderItem.setOrder(orderService.get(oid.getOrderId()));
+        //orderItem.setOrder(orderService.get(oid.getOrderId()));
 
         return orderItem;
 

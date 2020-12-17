@@ -18,13 +18,13 @@ public class OrderDto {
     @DateTimeFormat
     private Date date;
 
+    private Integer userId;
+
     private List<OrderItemDto> items;
 
-    private int userId;
 
 
-
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 

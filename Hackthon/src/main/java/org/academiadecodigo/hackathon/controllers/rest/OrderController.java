@@ -2,6 +2,7 @@
 package org.academiadecodigo.hackathon.controllers.rest;
 
 import org.academiadecodigo.hackathon.command.OrderDto;
+import org.academiadecodigo.hackathon.command.OrderItemDto;
 import org.academiadecodigo.hackathon.converters.OrderDtoToOrder;
 import org.academiadecodigo.hackathon.converters.OrderToOrderDto;
 import org.academiadecodigo.hackathon.persistence.model.User;
@@ -11,6 +12,7 @@ import org.academiadecodigo.hackathon.persistence.model.product.BusProduct;
 import org.academiadecodigo.hackathon.persistence.model.product.GamingProduct;
 import org.academiadecodigo.hackathon.persistence.model.product.Product;
 import org.academiadecodigo.hackathon.persistence.model.product.ProductType;
+import org.academiadecodigo.hackathon.services.OrderItemService;
 import org.academiadecodigo.hackathon.services.OrderService;
 import org.academiadecodigo.hackathon.services.ProductService;
 import org.academiadecodigo.hackathon.services.UserService;
@@ -34,7 +36,12 @@ public class OrderController {
     private OrderDtoToOrder orderDtoToOrder;
     private UserService userService;
     private ProductService productService;
+    private OrderItemService orderItemService;
 
+    @Autowired
+    public void setOrderItemService(OrderItemService orderItemService) {
+        this.orderItemService = orderItemService;
+    }
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -90,20 +97,28 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.POST, path = "/{uid}/create")
     public ResponseEntity<OrderDto> createOrder(@PathVariable Integer uid, @Valid @RequestBody OrderDto orderDto, BindingResult bindingResult) {
 
-
-
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        orderDto.setId(null);
+
+        //orderDto.setUserId(uid);
         Order order = orderDtoToOrder.convert(orderDto);
         order.setUser(userService.get(uid));
+
+        for (OrderItemDto oid : orderDto.getItems()) {
+            OrderItem oi = orderDtoToOrder.convertItem(oid);
+            oi.setOrder(order);
+            order.addOrderItem(oi);
+        }
+
         Order persistedOrder = orderService.save(order);
+
         orderDto = orderToOrderDto.convert(persistedOrder);
+
         return new ResponseEntity<>(orderDto, HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/{uid}/edit/{id}")
+   /* @RequestMapping(method = RequestMethod.PUT, value = "/{uid}/edit/{id}")
     public ResponseEntity<OrderDto> editOrder(@Valid @RequestBody OrderDto orderDto,
                                               BindingResult bindingResult, @PathVariable Integer uid,
                                               @PathVariable Integer id) {
@@ -118,22 +133,40 @@ public class OrderController {
 
             User user = userService.get(uid);
 
-           /* if (user == null || !user.getOrders().contains(order)) {
+            if (user == null || !user.getOrders().contains(order)) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }*/
+            }
 
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
-            order = orderDtoToOrder.convert(orderDto);
-             orderService.save(order);
+            //order = orderDtoToOrder.convert(orderDto);
+            //order.setId(id);
+
+            for (OrderItem oi : order.getItems()){
+                order.removeOrderItem(oi);
+            }
+            for (OrderItemDto oid : orderDto.getItems()) {
+                OrderItem oi = orderDtoToOrder.convertItem(oid);
+                oi.setOrder(order);
+                order.addOrderItem(oi);
+                orderItemService.save(oi);
+            }
+
+            orderService.save(order);
+
             OrderDto orderConvertedToDto = orderToOrderDto.convert(order);
+
             return new ResponseEntity<>(orderConvertedToDto, HttpStatus.OK);
+
         } catch (Exception e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(e.getStackTrace(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    */
+
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
     public ResponseEntity deleteOrder(@PathVariable Integer id) {
@@ -145,7 +178,7 @@ public class OrderController {
         }
     }
 
-    public void config (){
+    public void config() {
         User user1 = new User();
         user1.setFirstName("Hugo");
         userService.save(user1);

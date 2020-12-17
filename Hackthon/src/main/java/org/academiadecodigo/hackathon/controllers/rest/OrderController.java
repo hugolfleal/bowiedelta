@@ -65,45 +65,6 @@ public class OrderController {
     public ResponseEntity<OrderDto> getOrder(@PathVariable Integer id, @PathVariable Integer uid) {
         try {
 
-            User user1 = new User();
-            user1.setFirstName("Hugo");
-            userService.save(user1);
-
-            Product product = new BusProduct();
-            product.setName("Prod1");
-            product.setPrice(20000);
-            //product.setProductType(product.getProductType());
-            productService.save(product);
-
-            Product product1 = new GamingProduct();
-            product1.setName("Prod2");
-            product1.setPrice(3000);
-            //product1.setProductType(product1.getProductType());
-            productService.save(product1);
-
-            LinkedList<Product> products = new LinkedList<>();
-            products.add(product);
-            products.add(product1);
-
-            Order order1 = new Order();
-            order1.setUser(user1);
-
-
-            OrderItem orderItem = new OrderItem();
-            orderItem.setQuantity(2);
-            orderItem.setProduct(product);
-            orderItem.setOrder(order1);
-
-            OrderItem orderItem1 = new OrderItem();
-            orderItem1.setQuantity(3);
-            orderItem1.setProduct(product1);
-            orderItem1.setOrder(order1);
-
-            order1.addOrderItem(orderItem);
-            order1.addOrderItem(orderItem1);
-            user1.addOrder(order1);
-            orderService.save(order1);
-
             Order order = orderService.get(id);
 
             if (order == null) {
@@ -127,6 +88,8 @@ public class OrderController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/{uid}/create")
     public ResponseEntity<OrderDto> createOrder(@PathVariable Integer uid, @Valid @RequestBody OrderDto orderDto, BindingResult bindingResult) {
+
+        config();
 
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -181,5 +144,46 @@ public class OrderController {
         } catch (Exception e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    public void config (){
+        User user1 = new User();
+        user1.setFirstName("Hugo");
+        userService.save(user1);
+
+        Product product = new BusProduct();
+        product.setName("Prod1");
+        product.setPrice(20000);
+        //product.setProductType(product.getProductType());
+        productService.save(product);
+
+        Product product1 = new GamingProduct();
+        product1.setName("Prod2");
+        product1.setPrice(3000);
+        //product1.setProductType(product1.getProductType());
+        productService.save(product1);
+
+        LinkedList<Product> products = new LinkedList<>();
+        products.add(product);
+        products.add(product1);
+
+        Order order1 = new Order();
+        order1.setUser(user1);
+
+
+        OrderItem orderItem = new OrderItem();
+        orderItem.setQuantity(2);
+        orderItem.setProduct(product);
+        orderItem.setOrder(order1);
+
+        OrderItem orderItem1 = new OrderItem();
+        orderItem1.setQuantity(3);
+        orderItem1.setProduct(product1);
+        orderItem1.setOrder(order1);
+
+        order1.addOrderItem(orderItem);
+        order1.addOrderItem(orderItem1);
+        user1.addOrder(order1);
+        orderService.save(order1);
     }
 }

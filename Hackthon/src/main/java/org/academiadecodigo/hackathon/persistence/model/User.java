@@ -15,6 +15,7 @@ public class User extends AbstractModel {
     private String lastName;
     private String email;
     private String phone;
+    private Integer googleId;
 
     @OneToOne (cascade = {CascadeType.ALL}, orphanRemoval = true, mappedBy = "user", fetch = FetchType.EAGER)
     private Address address;
@@ -69,6 +70,14 @@ public class User extends AbstractModel {
 
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public Integer getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(Integer googleId) {
+        this.googleId = googleId;
     }
 
     public void addOrder(Order order) {

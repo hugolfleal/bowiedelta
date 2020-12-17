@@ -1,6 +1,15 @@
+org/academiadecodigo/hackathon/converters/ProductDtoToProduct$1.class
+org/academiadecodigo/hackathon/command/ProductDto.class
+org/academiadecodigo/hackathon/converters/AddressToAddressDto.class
+org/academiadecodigo/hackathon/converters/ProductDtoToProduct.class
+org/academiadecodigo/hackathon/controllers/rest/AddressController.class
+org/academiadecodigo/hackathon/controllers/rest/ProductController.class
 org/academiadecodigo/hackathon/persistence/dao/OrderItemDao.class
+org/academiadecodigo/hackathon/converters/AddressDtoToAddress.class
+org/academiadecodigo/hackathon/command/AddressDto.class
 org/academiadecodigo/hackathon/converters/OrderToOrderDto.class
 org/academiadecodigo/hackathon/command/OrderItemDto.class
 org/academiadecodigo/hackathon/persistence/model/order/OrderItem.class
 org/academiadecodigo/hackathon/services/OrderItemService.class
+org/academiadecodigo/hackathon/converters/ProductToProductDto.class
 org/academiadecodigo/hackathon/converters/OrderDtoToOrder.class

@@ -168,7 +168,7 @@ public class OrderController {
     */
 
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+    /*@RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
     public ResponseEntity deleteOrder(@PathVariable Integer id) {
         try {
             orderService.delete(id);
@@ -177,6 +177,8 @@ public class OrderController {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+     */
 
     public void config() {
         User user1 = new User();

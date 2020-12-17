@@ -5,6 +5,7 @@ import java.math.BigInteger;
 
 public class UserDto {
     private Integer id;
+    private String googleId;
 
     @NotNull(message = "First name is mandatory")
     @NotBlank(message = "First name is mandatory")
@@ -71,5 +72,13 @@ public class UserDto {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
     }
 }

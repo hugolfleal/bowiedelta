@@ -85,6 +85,14 @@ public class User extends AbstractModel {
         return orders;
     }
 
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+
     public void addOrder(Order order) {
         orders.add(order);
         order.setUser(this);

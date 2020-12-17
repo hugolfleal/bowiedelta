@@ -73,4 +73,6 @@ public abstract class Product extends AbstractModel {
     public void removeOrderItem(OrderItem orderItem){
         orderItems.remove(orderItem);
     }
+
+
 }

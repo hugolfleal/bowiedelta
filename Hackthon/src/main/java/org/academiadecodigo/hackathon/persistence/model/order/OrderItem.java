@@ -41,4 +41,13 @@ public class OrderItem extends AbstractModel {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public int getProductId() {
+        return product.getId();
+    }
+
+
+    public int getOrderId(){
+        return order.getId();
+    }
 }

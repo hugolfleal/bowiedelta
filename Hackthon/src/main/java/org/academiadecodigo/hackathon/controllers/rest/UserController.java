@@ -117,17 +117,4 @@ public class UserController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/googleId/{googleId}")
-    public ResponseEntity<UserDto> getUserGoogleId(@PathVariable String googleId) {
-        try {
-            String registeredGoogleId = userService.getByGoogleId(googleId);
-            if (registeredGoogleId.equals(googleId)){
-                return new ResponseEntity("true", HttpStatus.OK);
-            }
-            return new ResponseEntity("false", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
-
 }

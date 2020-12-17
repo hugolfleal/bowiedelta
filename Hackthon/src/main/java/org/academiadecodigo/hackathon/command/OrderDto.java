@@ -1,5 +1,7 @@
 package org.academiadecodigo.hackathon.command;
 
+import org.academiadecodigo.hackathon.persistence.model.User;
+import org.academiadecodigo.hackathon.persistence.model.order.OrderItem;
 import org.academiadecodigo.hackathon.persistence.model.product.Product;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,21 +15,29 @@ public class OrderDto {
 
     private Integer id;
 
-    @NotNull(message = "Quantity is mandatory")
-    @NotBlank(message = "Quantity is mandatory")
-    private int quantity;
-
     @DateTimeFormat
     private Date date;
 
-    private List<Product> products;
+    private List<OrderItemDto> items;
 
-    public List<Product> getProducts() {
-        return products;
+    private int userId;
+
+
+
+    public int getUserId() {
+        return userId;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public List<OrderItemDto> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItemDto> items) {
+        this.items = items;
     }
 
     public Integer getId() {
@@ -38,13 +48,6 @@ public class OrderDto {
         this.id = id;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     public Date getDate() {
         return date;
@@ -53,4 +56,5 @@ public class OrderDto {
     public void setDate(Date date) {
         this.date = date;
     }
+
 }

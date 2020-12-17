@@ -1,10 +1,11 @@
 package org.academiadecodigo.hackathon.persistence.model.product;
 
 import org.academiadecodigo.hackathon.persistence.model.AbstractModel;
-import org.academiadecodigo.hackathon.persistence.model.order.Order;
+import org.academiadecodigo.hackathon.persistence.model.order.OrderItem;
 
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,14 +20,19 @@ public abstract class Product extends AbstractModel {
     private double price;
     private String name;
     private String description;
+    //private ProductType productType;
 
-    @ManyToMany(
-            // fetch all security groups when fetching a user
+    @OneToMany(
+            mappedBy = "product",
             fetch = FetchType.EAGER
     )
-    private List<Order> orders;
+    private List<OrderItem> orderItems = new LinkedList<>();
 
     public abstract ProductType getProductType();
+
+    /*public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }*/
 
     public double getPrice() {
         return price;
@@ -52,19 +58,19 @@ public abstract class Product extends AbstractModel {
         this.description = description;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
-    public void addOrder(Order order){
-        orders.add(order);
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
     }
 
-    public void removeOrder(Order order){
-        orders.remove(order);
+    public void removeOrderItem(OrderItem orderItem){
+        orderItems.remove(orderItem);
     }
 }

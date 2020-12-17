@@ -1,2 +1,6 @@
+org/academiadecodigo/hackathon/persistence/dao/OrderItemDao.class
 org/academiadecodigo/hackathon/converters/OrderToOrderDto.class
+org/academiadecodigo/hackathon/command/OrderItemDto.class
+org/academiadecodigo/hackathon/persistence/model/order/OrderItem.class
+org/academiadecodigo/hackathon/services/OrderItemService.class
 org/academiadecodigo/hackathon/converters/OrderDtoToOrder.class

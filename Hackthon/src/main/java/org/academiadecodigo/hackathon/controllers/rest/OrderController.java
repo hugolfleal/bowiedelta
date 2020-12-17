@@ -6,13 +6,16 @@ import org.academiadecodigo.hackathon.converters.OrderDtoToOrder;
 import org.academiadecodigo.hackathon.converters.OrderToOrderDto;
 import org.academiadecodigo.hackathon.persistence.model.User;
 import org.academiadecodigo.hackathon.persistence.model.order.Order;
+import org.academiadecodigo.hackathon.persistence.model.order.OrderItem;
 import org.academiadecodigo.hackathon.persistence.model.product.BusProduct;
 import org.academiadecodigo.hackathon.persistence.model.product.GamingProduct;
 import org.academiadecodigo.hackathon.persistence.model.product.Product;
+import org.academiadecodigo.hackathon.persistence.model.product.ProductType;
 import org.academiadecodigo.hackathon.services.OrderService;
 import org.academiadecodigo.hackathon.services.ProductService;
 import org.academiadecodigo.hackathon.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -36,6 +39,11 @@ public class OrderController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
     }
 
     @Autowired
@@ -64,11 +72,13 @@ public class OrderController {
             Product product = new BusProduct();
             product.setName("Prod1");
             product.setPrice(20000);
+            //product.setProductType(product.getProductType());
             productService.save(product);
 
             Product product1 = new GamingProduct();
             product1.setName("Prod2");
             product1.setPrice(3000);
+            //product1.setProductType(product1.getProductType());
             productService.save(product1);
 
             LinkedList<Product> products = new LinkedList<>();
@@ -77,8 +87,21 @@ public class OrderController {
 
             Order order1 = new Order();
             order1.setUser(user1);
-            order1.setQuantity(2);
-            order1.setProducts(products);
+
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setQuantity(2);
+            orderItem.setProduct(product);
+            orderItem.setOrder(order1);
+
+            OrderItem orderItem1 = new OrderItem();
+            orderItem1.setQuantity(3);
+            orderItem1.setProduct(product1);
+            orderItem1.setOrder(order1);
+
+            order1.addOrderItem(orderItem);
+            order1.addOrderItem(orderItem1);
+            user1.addOrder(order1);
             orderService.save(order1);
 
             Order order = orderService.get(id);
@@ -89,9 +112,9 @@ public class OrderController {
 
             User user = userService.get(uid);
 
-            if (user == null || !user.getOrders().contains(order)) {
+           /* if (user == null || !user.getOrders().contains(order)) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+            }*/
 
             OrderDto orderDto = orderToOrderDto.convert(order);
 
@@ -139,7 +162,7 @@ public class OrderController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
-            order.setQuantity(orderDto.getQuantity());
+
 
 
             order = orderService.save(order);

@@ -4,6 +4,7 @@ package org.academiadecodigo.hackathon.services;
 import org.academiadecodigo.hackathon.persistence.dao.OrderDao;
 import org.academiadecodigo.hackathon.persistence.dao.ProductDao;
 import org.academiadecodigo.hackathon.persistence.model.order.Order;
+import org.academiadecodigo.hackathon.persistence.model.order.OrderItem;
 import org.academiadecodigo.hackathon.persistence.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,14 +48,14 @@ public class ProductService {
     }
 
     @Transactional
-    public void addOrder(Integer id, Order order) throws IOException {
+    public void addOrder(Integer id, OrderItem orderItem) throws IOException {
 
         Product product = productDao.findById(id);
         if (product == null) {
             throw new IOException();
         }
 
-        product.addOrder(order);
+        product.addOrderItem(orderItem);
         productDao.saveOrUpdate(product);
     }
 
@@ -65,6 +66,7 @@ public class ProductService {
         Product product = productDao.findById(id);
         Order order = orderDao.findById(orderId);
 
+
         if (product == null) {
             throw new IOException();
         }
@@ -73,7 +75,15 @@ public class ProductService {
             throw new IOException();
         }
 
-        product.removeOrder(order);
+        OrderItem orderItem = null;
+
+        for (OrderItem oi : order.getItems()){
+            if (oi.getProduct().equals(product)){
+                 orderItem = oi;
+            }
+        }
+
+        product.removeOrderItem(orderItem);
         productDao.saveOrUpdate(product);
     }
 

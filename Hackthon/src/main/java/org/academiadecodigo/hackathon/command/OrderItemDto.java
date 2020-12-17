@@ -6,6 +6,15 @@ public class OrderItemDto {
     private int quantity;
     private String productName;
     private int productId;
+    private int orderId;
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
 
     public int getId() {
         return id;

@@ -4,7 +4,7 @@ import javax.validation.constraints.*;
 
 public class UserDto {
     private Integer id;
-    private Integer googleId;
+    private String googleId;
 
     @NotNull(message = "First name is mandatory")
     @NotBlank(message = "First name is mandatory")
@@ -64,11 +64,11 @@ public class UserDto {
         return id;
     }
 
-    public Integer getGoogleId() {
+    public String getGoogleId() {
         return googleId;
     }
 
-    public void setGoogleId(Integer googleId) {
+    public void setGoogleId(String googleId) {
         this.googleId = googleId;
     }
 }

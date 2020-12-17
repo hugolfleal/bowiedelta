@@ -65,6 +65,7 @@ public class OrderController {
     public ResponseEntity<OrderDto> getOrder(@PathVariable Integer id, @PathVariable Integer uid) {
         try {
 
+            config();
             Order order = orderService.get(id);
 
             if (order == null) {
@@ -89,7 +90,7 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.POST, path = "/{uid}/create")
     public ResponseEntity<OrderDto> createOrder(@PathVariable Integer uid, @Valid @RequestBody OrderDto orderDto, BindingResult bindingResult) {
 
-        config();
+
 
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

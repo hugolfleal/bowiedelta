@@ -76,5 +76,5 @@ public class UserService {
         userDao.saveOrUpdate(user);
     }
 
-
+    public String getByGoogleId(String googleId) { return userDao.findByGoogleId(googleId);}
 }

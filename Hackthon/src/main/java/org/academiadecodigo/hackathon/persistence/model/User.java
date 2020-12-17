@@ -65,13 +65,6 @@ public class User extends AbstractModel {
         return phone;
     }
 
-    public String getGoogleId() {
-        return googleId;
-    }
-
-    public void setGoogleId(String googleId) {
-        this.googleId = googleId;
-    }
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;

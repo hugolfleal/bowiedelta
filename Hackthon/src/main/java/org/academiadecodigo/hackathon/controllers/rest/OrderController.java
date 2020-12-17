@@ -118,18 +118,16 @@ public class OrderController {
 
             User user = userService.get(uid);
 
-            if (user == null || !user.getOrders().contains(order)) {
+           /* if (user == null || !user.getOrders().contains(order)) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+            }*/
 
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
-
-
-
-            order = orderService.save(order);
+            order = orderDtoToOrder.convert(orderDto);
+             orderService.save(order);
             OrderDto orderConvertedToDto = orderToOrderDto.convert(order);
             return new ResponseEntity<>(orderConvertedToDto, HttpStatus.OK);
         } catch (Exception e) {

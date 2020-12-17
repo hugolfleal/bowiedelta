@@ -31,6 +31,8 @@ public class UserService {
         return userDao.findById(id);
     }
 
+    public String getByGoogleId(String googleId) { return userDao.findByGoogleId(googleId);}
+
     @Transactional
     public User save(User user) {
         return userDao.saveOrUpdate(user);
@@ -75,6 +77,4 @@ public class UserService {
         user.removeOrder(order);
         userDao.saveOrUpdate(user);
     }
-
-
 }

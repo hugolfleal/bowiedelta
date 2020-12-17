@@ -1,6 +1,7 @@
 package org.academiadecodigo.hackathon.command;
 
 import javax.validation.constraints.*;
+import java.math.BigInteger;
 
 public class UserDto {
     private Integer id;
@@ -22,6 +23,15 @@ public class UserDto {
     @Pattern(regexp = "^\\+?[0-9]*$", message = "Phone number contains invalid characters")
     @Size(min = 9, max = 16)
     private String phone;
+    private String googleId;
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
 
     public String getFirstName() {
         return firstName;

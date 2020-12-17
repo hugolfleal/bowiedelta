@@ -37,6 +37,7 @@ public abstract class GenericDao<T extends Model> {
         return em.find(modelType, id);
     }
 
+
     public T saveOrUpdate(T modelObject) {
         return em.merge(modelObject);
     }

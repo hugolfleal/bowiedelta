@@ -3,6 +3,7 @@ package org.academiadecodigo.hackathon.persistence.model;
 import org.academiadecodigo.hackathon.persistence.model.order.Order;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class User extends AbstractModel {
     private String lastName;
     private String email;
     private String phone;
+    private String googleId;
 
     @OneToOne (cascade = {CascadeType.ALL}, orphanRemoval = true, mappedBy = "user", fetch = FetchType.EAGER)
     private Address address;
@@ -61,6 +63,18 @@ public class User extends AbstractModel {
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public void setPhone(String phone) {

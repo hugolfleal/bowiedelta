@@ -2,7 +2,7 @@ package org.academiadecodigo.hackathon.persistence.model.product;
 
 public enum ProductType {
 
-    BUS,
-    GAMING,
-    TRIP
+    VIRTUAL_EXPERIENCES,
+    REAL_EXPERIENCES,
+    MISCELLANEOUS
 }

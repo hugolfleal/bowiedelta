@@ -7,15 +7,13 @@ import org.academiadecodigo.hackathon.converters.OrderToOrderDto;
 import org.academiadecodigo.hackathon.persistence.model.User;
 import org.academiadecodigo.hackathon.persistence.model.order.Order;
 import org.academiadecodigo.hackathon.persistence.model.order.OrderItem;
-import org.academiadecodigo.hackathon.persistence.model.product.BusProduct;
-import org.academiadecodigo.hackathon.persistence.model.product.GamingProduct;
+import org.academiadecodigo.hackathon.persistence.model.product.VirtualExperiencesProduct;
+import org.academiadecodigo.hackathon.persistence.model.product.MiscellaneousProduct;
 import org.academiadecodigo.hackathon.persistence.model.product.Product;
-import org.academiadecodigo.hackathon.persistence.model.product.ProductType;
 import org.academiadecodigo.hackathon.services.OrderService;
 import org.academiadecodigo.hackathon.services.ProductService;
 import org.academiadecodigo.hackathon.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -150,13 +148,13 @@ public class OrderController {
         user1.setFirstName("Hugo");
         userService.save(user1);
 
-        Product product = new BusProduct();
+        Product product = new VirtualExperiencesProduct();
         product.setName("Prod1");
         product.setPrice(20000);
         //product.setProductType(product.getProductType());
         productService.save(product);
 
-        Product product1 = new GamingProduct();
+        Product product1 = new MiscellaneousProduct();
         product1.setName("Prod2");
         product1.setPrice(3000);
         //product1.setProductType(product1.getProductType());

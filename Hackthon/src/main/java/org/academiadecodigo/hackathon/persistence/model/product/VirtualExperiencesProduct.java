@@ -3,9 +3,9 @@ package org.academiadecodigo.hackathon.persistence.model.product;
 import javax.persistence.Entity;
 
 @Entity
-public class BusProduct extends Product{
+public class VirtualExperiencesProduct extends Product{
     @Override
     public ProductType getProductType() {
-        return ProductType.BUS;
+        return ProductType.VIRTUAL_EXPERIENCES;
     }
 }

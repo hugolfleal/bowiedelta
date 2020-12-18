@@ -72,7 +72,6 @@ public class OrderController {
     public ResponseEntity<OrderDto> getOrder(@PathVariable Integer id, @PathVariable Integer uid) {
         try {
 
-            config();
             Order order = orderService.get(id);
 
             if (order == null) {

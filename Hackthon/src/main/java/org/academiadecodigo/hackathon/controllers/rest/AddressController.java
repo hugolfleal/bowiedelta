@@ -61,6 +61,7 @@ public class AddressController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
+        addressDto.setUserId(uid);
         Address address = addressDtoToAddress.convert(addressDto);
         Address savedAddress = addressService.save(address);
 

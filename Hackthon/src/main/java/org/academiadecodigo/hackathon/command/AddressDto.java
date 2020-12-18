@@ -7,6 +7,7 @@ public class AddressDto {
     private String district;
     private String country;
     private String zipCode;
+    private int userId;
     private int id;
 
     public String getStreet() {
@@ -47,6 +48,14 @@ public class AddressDto {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getId() {

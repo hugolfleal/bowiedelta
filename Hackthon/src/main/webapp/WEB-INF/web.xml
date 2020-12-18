@@ -18,7 +18,7 @@
   </servlet-mapping>
   <context-param>
     <param-name>spring.profiles.active</param-name>
-    <param-value>prod</param-value>
+    <param-value>heroku</param-value>
   </context-param>
   <!--
       By delaying the initialization of Log4j2, we can define, programmatically, which configuration

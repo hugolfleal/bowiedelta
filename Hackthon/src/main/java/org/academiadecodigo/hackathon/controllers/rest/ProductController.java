@@ -1,12 +1,9 @@
 package org.academiadecodigo.hackathon.controllers.rest;
 
-import org.academiadecodigo.hackathon.command.AddressDto;
 import org.academiadecodigo.hackathon.command.ProductDto;
 import org.academiadecodigo.hackathon.converters.ProductDtoToProduct;
 import org.academiadecodigo.hackathon.converters.ProductToProductDto;
-import org.academiadecodigo.hackathon.persistence.model.Address;
 import org.academiadecodigo.hackathon.persistence.model.product.Product;
-import org.academiadecodigo.hackathon.persistence.model.product.ProductType;
 import org.academiadecodigo.hackathon.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

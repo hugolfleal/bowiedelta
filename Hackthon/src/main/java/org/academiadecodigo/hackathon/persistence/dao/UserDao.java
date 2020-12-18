@@ -17,4 +17,11 @@ public class UserDao extends GenericDao<User>{
                 .setParameter(1, googleId)
                 .getSingleResult();
     }
+
+    public User findUserByGoogleId(String googleId) {
+        return (User) em.createQuery(
+                "SELECT u FROM User u WHERE u.googleId LIKE ?1")
+                .setParameter(1, googleId)
+                .getSingleResult();
+    }
 }

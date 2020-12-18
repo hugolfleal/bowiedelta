@@ -67,7 +67,7 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/edit/{id}")
-    public ResponseEntity<ProductDto> editUser(@Valid @RequestBody ProductDto productDto,
+    public ResponseEntity<ProductDto> editProduct(@Valid @RequestBody ProductDto productDto,
                                                BindingResult bindingResult,
                                                @PathVariable Integer id) {
         if (bindingResult.hasErrors()) {

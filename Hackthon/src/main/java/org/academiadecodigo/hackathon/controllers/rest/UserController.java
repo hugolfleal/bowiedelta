@@ -61,7 +61,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/googleId/{googleId}")
-    public ResponseEntity<UserDto> getUserGoogleId(@PathVariable String googleId) {
+    public ResponseEntity<UserDto> getGoogleId(@PathVariable String googleId) {
         try {
             String registeredGoogleId = userService.getByGoogleId(googleId);
             if (registeredGoogleId.equals(googleId)){
@@ -72,6 +72,18 @@ public class UserController {
             return new ResponseEntity("false", HttpStatus.OK);
         }
     }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/userGoogleId/{googleId}")
+    public ResponseEntity<UserDto> getUserGoogleId(@PathVariable String googleId) {
+        try {
+            User user = userService.getUserByGoogleId(googleId);
+            UserDto userDto = userToUserDto.convert(user);
+            return new ResponseEntity(userDto, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getStackTrace(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
     @RequestMapping(method = RequestMethod.POST, path = "/create")
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto, BindingResult bindingResult) {

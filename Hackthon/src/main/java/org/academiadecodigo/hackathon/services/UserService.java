@@ -33,6 +33,8 @@ public class UserService {
 
     public String getByGoogleId(String googleId) { return userDao.findByGoogleId(googleId);}
 
+    public User getUserByGoogleId(String googleId) { return userDao.findUserByGoogleId(googleId);}
+
     @Transactional
     public User save(User user) {
         return userDao.saveOrUpdate(user);

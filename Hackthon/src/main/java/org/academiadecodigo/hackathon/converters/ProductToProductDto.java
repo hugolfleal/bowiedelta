@@ -13,7 +13,7 @@ public class ProductToProductDto extends AbstractConverter<Product, ProductDto> 
     public ProductDto convert(Product product) {
 
         ProductDto productDto = new ProductDto();
-        productDto.setProductType(product.getProductType().toString());
+        productDto.setProductType(product.getProductType());
         productDto.setPrice(product.getPrice());
         productDto.setDescription(product.getDescription());
         productDto.setName(product.getName());
